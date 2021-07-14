@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="mapper.board">
+	
+	<resultMap id="articlesResult" type="articleVO">
+		<!-- <result property="level" column="lelvel"/> -->
+		<result property="s1_no" column="s1_no"/>
+		<result property="s1_category" column="s1_category"/>
+		<result property="s1_title" column="s1_title"/>
+		<result property="s1_content" column="s1_content"/>
+		<result property="s1_regdate" column="s1_regdate"/>
+		<result property="s1_view" column="s1_view"/>
+		<result property="u_id" column="u_id"/>
+	</resultMap>
+	
+	<select id="articleList" resultMap="articlesResult">
+		<![CDATA[
+			select*from soccer1
+		]]>
+	</select>
+	
+</mapper>
