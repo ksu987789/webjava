@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="mapper.board">
+	<!-- 해외축구  -->
+	<resultMap id="osSoccerResult" type="articleVO">
+		<result property="no" column="s1_no"/>
+		<result property="category" column="s1_category"/>
+		<result property="title" column="s1_title"/>
+		<result property="content" column="s1_content"/>
+		<result property="regdate" column="s1_regdate"/>
+		<result property="view" column="s1_view"/>
+		<result property="u_id" column="u_id"/>
+	</resultMap>
+	
+	
+	
+	<select id="osSoccerList" resultMap="osSoccerResult">
+		<![CDATA[
+			select*from soccer1
+		]]>
+	</select>
+	
+	<insert id = "insertOsSoccer" parameterType="java.util.Map">
+		<![CDATA[
+			insert into soccer1
+		]]>
+	</insert>
+	
+	<select id = "selectOsSoccerNO" parameterType="int">
+		<![CDATA[
+			selcet nvl(max(no), 0) + 1 from soccer1
+		]]>
+	</select>
+	
+	<select id = "selectOsSoccer" resultType="articleVO" parameterType="int">
+		<![CDATA[
+			select * from soccer1 where no = #{no}
+		]]>
+	</select>
+	
+	<update id= "updateOsSoccer" parameterType="java.util,Map">
+		update soccer1
+		set title = #{title},
+		content = #{content}
+		where no=#{no}
+	</update>
+	
+	<delete id = "delectOsSoccer" parameterType="int">
+		delete from soccer
+		where no in (
+			select no from soccer1
+			start with no = #{no})
+	</delete>
+	
+	<!-- 국내축구 -->
+	<resultMap id="krSoccerResult" type="articleVO">
+		<result property="no" column="s2_no"/>
+		<result property="category" column="s2_category"/>
+		<result property="title" column="s2_title"/>
+		<result property="content" column="s2_content"/>
+		<result property="regdate" column="s2_regdate"/>
+		<result property="view" column="s2_view"/>
+		<result property="u_id" column="u_id"/>
+	</resultMap>
+	
+	
+	
+	<select id="krSoccerList" resultMap="krSoccerResult">
+		<![CDATA[
+			select*from soccer2
+		]]>
+	</select>
+	
+	<!-- 뉴스 -->
+	<resultMap id="newsResult" type="articleVO">
+		<result property="no" column="n_no"/>
+		<result property="title" column="n_title"/>
+		<result property="content" column="n_content"/>
+		<result property="regdate" column="n_regdate"/>
+		<result property="view" column="n_view"/>
+		<result property="u_id" column="u_id"/>
+	</resultMap>
+	
+	
+	
+	<select id="newsList" resultMap="newsResult">
+		<![CDATA[
+			select*from news
+		]]>
+	</select>
+	
+	<!-- 자유 -->
+	<resultMap id="freeResult" type="articleVO">
+		<result property="no" column="f_no"/>
+		<result property="category" column="f_category"/>
+		<result property="title" column="f_title"/>
+		<result property="content" column="f_content"/>
+		<result property="regdate" column="f_regdate"/>
+		<result property="view" column="f_view"/>
+		<result property="u_id" column="u_id"/>
+	</resultMap>
+	
+	
+	
+	<select id="freeList" resultMap="freeResult">
+		<![CDATA[
+			select*from free
+		]]>
+	</select>
+</mapper>
