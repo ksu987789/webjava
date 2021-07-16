@@ -57,7 +57,7 @@ public class BoardControllerImpl  implements BoardController{
 	@Override
 	@RequestMapping(value="/board/newArticleAdd.do" ,method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity newArticleAdd(MultipartHttpServletRequest multipartRequest, 
+	public ResponseEntity osWrite(MultipartHttpServletRequest multipartRequest, 
 			HttpServletResponse response) throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
 		Map<String,Object> articleMap = new HashMap<String, Object>();
