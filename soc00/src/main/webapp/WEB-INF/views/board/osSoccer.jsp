@@ -76,7 +76,7 @@
 		</table>
 		<hr/>
 		<p id="a1">
-		<a id="a1" class="btn btn-primary" href="${contextPath }/board/osWrite.do">글쓰기</a>
+		<a id="a1" class="btn btn-primary" href="${contextPath }/board/osWriteForm.do">글쓰기</a>
 		</p>
 		<br>
 		

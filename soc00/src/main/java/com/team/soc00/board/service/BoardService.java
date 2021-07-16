@@ -8,6 +8,8 @@ import com.team.soc00.board.vo.ArticleVO;
 public interface BoardService {
 	
 	public List<ArticleVO> osSoccerList() throws Exception;
+
+	public int osWrite(Map articleMap) throws Exception;
 	
 	public List<ArticleVO> krSoccerList() throws Exception;
 	
@@ -15,5 +17,4 @@ public interface BoardService {
 	
 	public List<ArticleVO> freeList() throws Exception;
 	
-	public int osWrite(Map articleMap) throws Exception;
 }

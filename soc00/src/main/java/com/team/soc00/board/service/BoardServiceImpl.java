@@ -24,6 +24,11 @@ public class BoardServiceImpl implements BoardService {
 		return osSoccerList;
 	}
 	
+	@Override
+	public int osWrite(Map articleMap) throws Exception{
+		return boardDAO.osWrite(articleMap);
+	}
+	
 	public List<ArticleVO> krSoccerList() throws Exception {
 		List<ArticleVO> krSoccerList = boardDAO.krSoccerList();
 		return krSoccerList;
@@ -39,8 +44,5 @@ public class BoardServiceImpl implements BoardService {
 		return freeList;
 	}
 	
-	@Override
-	public int osWrite(Map articleMap) throws Exception{
-		return boardDAO.insertNewArticle(articleMap);
-	}
+	
 }

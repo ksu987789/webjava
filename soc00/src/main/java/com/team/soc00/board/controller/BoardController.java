@@ -20,4 +20,5 @@ public interface BoardController {
 	
 	public ModelAndView free(HttpServletRequest request, HttpServletResponse response)throws Exception;
 
+	
 }

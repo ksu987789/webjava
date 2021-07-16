@@ -53,7 +53,7 @@ $(function(){
 <div class="container" align="right">
 <h3>글쓰기</h3>
 <hr/>
-<form id="frm" action="insert.jsp" method="post" >
+<form id="frm" action="osWrite.do" method="post" >
 <table width="70%" align="center">
         <tr>
             <td>제목</td>
@@ -90,7 +90,7 @@ $(function(){
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" id="submit" value="글쓰기"  />
+					<input type="submit" value="글쓰기"  />
 					<input type="button" value="취소"/>
 				</td>
 			</tr>

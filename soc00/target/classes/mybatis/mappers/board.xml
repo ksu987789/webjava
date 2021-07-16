@@ -15,8 +15,6 @@
 		<result property="u_id" column="u_id"/>
 	</resultMap>
 	
-	
-	
 	<select id="osSoccerList" resultMap="osSoccerResult">
 		<![CDATA[
 			select*from soccer1
@@ -25,7 +23,7 @@
 	
 	<insert id = "insertOsSoccer" parameterType="java.util.Map">
 		<![CDATA[
-			insert into soccer1
+			insert into soccer1(no, title, content) values(#{no},#{title}, #{content})
 		]]>
 	</insert>
 	
@@ -41,20 +39,6 @@
 		]]>
 	</select>
 	
-	<update id= "updateOsSoccer" parameterType="java.util,Map">
-		update soccer1
-		set title = #{title},
-		content = #{content}
-		where no=#{no}
-	</update>
-	
-	<delete id = "delectOsSoccer" parameterType="int">
-		delete from soccer
-		where no in (
-			select no from soccer1
-			start with no = #{no})
-	</delete>
-	
 	<!-- 국내축구 -->
 	<resultMap id="krSoccerResult" type="articleVO">
 		<result property="no" column="s2_no"/>
@@ -65,8 +49,6 @@
 		<result property="view" column="s2_view"/>
 		<result property="u_id" column="u_id"/>
 	</resultMap>
-	
-	
 	
 	<select id="krSoccerList" resultMap="krSoccerResult">
 		<![CDATA[
@@ -83,8 +65,6 @@
 		<result property="view" column="n_view"/>
 		<result property="u_id" column="u_id"/>
 	</resultMap>
-	
-	
 	
 	<select id="newsList" resultMap="newsResult">
 		<![CDATA[
@@ -103,11 +83,12 @@
 		<result property="u_id" column="u_id"/>
 	</resultMap>
 	
-	
-	
 	<select id="freeList" resultMap="freeResult">
 		<![CDATA[
 			select*from free
 		]]>
 	</select>
+	
+	
+	
 </mapper>

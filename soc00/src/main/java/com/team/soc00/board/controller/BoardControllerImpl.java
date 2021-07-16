@@ -65,12 +65,11 @@ public class BoardControllerImpl implements BoardController {
 			articleMap.put(name,value);
 		}
 
-		String imageFile= upload(multipartRequest);
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		String id = memberVO.getId();
-		articleMap.put("parentNO", 0);
-		articleMap.put("id", id);
+		articleMap.put("no", 0);
+		articleMap.put("u_id", id);
 		
 		String message;
 		ResponseEntity resEnt=null;
@@ -89,7 +88,7 @@ public class BoardControllerImpl implements BoardController {
 
 			message = " <script>";
 			message +=" alert('오류가 발생했습니다. 다시 시도해 주세요');');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/board/articleForm.do'; ";
+			message +=" location.href='"+multipartRequest.getContextPath()+"/board/osWrite.do'; ";
 			message +=" </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -130,4 +129,14 @@ public class BoardControllerImpl implements BoardController {
 		mav.addObject("allList", allList);
 		return mav;
 	}
+	
+	
+	@RequestMapping(value="/board/*Form.do", method = RequestMethod.GET)
+	private ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 }
