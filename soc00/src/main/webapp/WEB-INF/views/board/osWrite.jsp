@@ -17,7 +17,7 @@ $(function(){
       nhn.husky.EZCreator.createInIFrame({
           oAppRef: oEditors,
           elPlaceHolder: "ir1",
-          sSkinURI: "/aaaa/SE/SmartEditor2Skin.html",  
+          sSkinURI: "/soc00/SE/SmartEditor2Skin.html",  
           htParams : {
               bUseToolbar : true,             
               bUseVerticalResizer : true,     
