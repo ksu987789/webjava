@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SmartEditor</title>
-<script type="text/javascript" src="<%=ctx %>/SE/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="${contextPath}/resources/SE/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script type="text/javascript">
 var oEditors = [];
@@ -17,7 +17,7 @@ $(function(){
       nhn.husky.EZCreator.createInIFrame({
           oAppRef: oEditors,
           elPlaceHolder: "ir1",
-          sSkinURI: "/soc00/SE/SmartEditor2Skin.html",  
+          sSkinURI: "resources/SE/SmartEditor2Skin.html",  
           htParams : {
               bUseToolbar : true,             
               bUseVerticalResizer : true,     
