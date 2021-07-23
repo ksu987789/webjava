@@ -21,11 +21,19 @@
 		]]>
 	</select>
 	
-	<insert id = "insertOsSoccer" parameterType="java.util.Map">
+	<insert id = "insertOsSoccer" parameterType="articleVO">
 		<![CDATA[
-			insert into soccer1(no, title, content) values(#{no},#{title}, #{content})
+			insert into soccer1(s1_no, s1_title, s1_category, s1_content, s1_regdate, u_id) 
+			values(null,#{title},#{category}, #{content},now(),#{u_id})
 		]]>
 	</insert>
+	
+	<select id="selectOsView" parameterType="articleVO" resultMap="osSoccerResult">
+		<![CDATA[
+			select*from soccer1
+			where s1_no = #{no}
+		]]>
+	</select>
 	
 	<select id = "selectOsSoccerNO" parameterType="int">
 		<![CDATA[

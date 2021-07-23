@@ -19,6 +19,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,49 +54,72 @@ public class BoardControllerImpl implements BoardController {
 	}
 	
 	@Override
-	@RequestMapping(value="/board/osWrite.do" ,method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity osWrite(MultipartHttpServletRequest multipartRequest, 
-			HttpServletResponse response) throws Exception {
-		multipartRequest.setCharacterEncoding("utf-8");
-		Map<String,Object> articleMap = new HashMap<String, Object>();
-		Enumeration enu=multipartRequest.getParameterNames();
-		while(enu.hasMoreElements()){
-			String name=(String)enu.nextElement();
-			String value=multipartRequest.getParameter(name);
-			articleMap.put(name,value);
-		}
-
-		HttpSession session = multipartRequest.getSession();
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		String id = memberVO.getId();
-		articleMap.put("no", 0);
-		articleMap.put("u_id", id);
-		
-		String message;
-		ResponseEntity resEnt=null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		try {
-			int articleNO = boardService.osWrite(articleMap);
-			
-
-			message = "<script>";
-			message += " alert('새글을 추가했습니다.');";
-			message += " location.href='"+multipartRequest.getContextPath()+"/board/osSoccer.do'; ";
-			message +=" </script>";
-			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-		}catch(Exception e) {
-
-			message = " <script>";
-			message +=" alert('오류가 발생했습니다. 다시 시도해 주세요');');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/board/osWrite.do'; ";
-			message +=" </script>";
-			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-			e.printStackTrace();
-		}
-		return resEnt;
+	@RequestMapping(value="/board/osWrite.do", method=RequestMethod.POST)
+	public String osWrite2(ArticleVO articleVO, HttpServletRequest req, HttpServletResponse res)throws Exception {
+		req.setCharacterEncoding("utf-8");
+		res.setContentType("text/html; charset=utf-8");
+		boardService.osWrite2(articleVO);
+		return "redirect:/board/osSoccer.do";
 	}
+	
+	/*
+	 * @Override
+	 * 
+	 * @RequestMapping(value="/board/osView.do", method= {RequestMethod.POST,
+	 * RequestMethod.GET}) public String osView(@RequestParam("no") int no, Model
+	 * model, HttpServletRequest req, HttpServletResponse res)throws Exception {
+	 * req.setCharacterEncoding("utf-8");
+	 * res.setContentType("text/html; charset=utf-8"); int result =
+	 * boardService.osView(no); model.addAttribute("views", result);
+	 * System.out.println(result); return "redirect:/board/osView.do"; }
+	 */
+	
+	@Override
+	@RequestMapping(value="/board/osView.do", method= {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView osView(@RequestParam("no") int no,
+			HttpServletRequest request, HttpServletResponse response)throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		articleVO = boardService.osView(no);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("article", articleVO);
+		return mav;
+	}
+	
+	/*
+	 * @Override
+	 * 
+	 * @RequestMapping(value="/board/osWrite.do" ,method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public ResponseEntity osWrite(MultipartHttpServletRequest
+	 * multipartRequest, HttpServletResponse response) throws Exception {
+	 * multipartRequest.setCharacterEncoding("utf-8"); Map<String,Object> articleMap
+	 * = new HashMap<String, Object>(); Enumeration
+	 * enu=multipartRequest.getParameterNames(); while(enu.hasMoreElements()){
+	 * String name=(String)enu.nextElement(); String
+	 * value=multipartRequest.getParameter(name); articleMap.put(name,value); }
+	 * 
+	 * HttpSession session = multipartRequest.getSession(); MemberVO memberVO =
+	 * (MemberVO) session.getAttribute("member"); String id = memberVO.getU_id();
+	 * articleMap.put("no", 0); articleMap.put("u_id", id);
+	 * 
+	 * String message; ResponseEntity resEnt=null; HttpHeaders responseHeaders = new
+	 * HttpHeaders(); responseHeaders.add("Content-Type",
+	 * "text/html; charset=utf-8"); try { int articleNO =
+	 * boardService.osWrite(articleMap);
+	 * 
+	 * 
+	 * message = "<script>"; message += " alert('새글을 추가했습니다.');"; message +=
+	 * " location.href='"+multipartRequest.getContextPath()+"/board/osSoccer.do'; ";
+	 * message +=" </script>"; resEnt = new ResponseEntity(message, responseHeaders,
+	 * HttpStatus.CREATED); }catch(Exception e) {
+	 * 
+	 * message = " <script>"; message +=" alert('오류가 발생했습니다. 다시 시도해 주세요');');";
+	 * message +=" location.href='"+multipartRequest.getContextPath()
+	 * +"/board/osWriteForm.do'; "; message +=" </script>"; resEnt = new
+	 * ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+	 * e.printStackTrace(); } return resEnt; }
+	 */
 	
 
 	//국내축구게시판
@@ -138,5 +163,6 @@ public class BoardControllerImpl implements BoardController {
 		mav.setViewName(viewName);
 		return mav;
 	}
-	
+
+
 }

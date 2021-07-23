@@ -15,27 +15,36 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDAO memberDAO;
-
+	
 	@Override
 	public List userList()throws DataAccessException {
 		List membersList = null;
 		membersList = memberDAO.selectAllUser();
 		return membersList;
 	}
-
+	
 	@Override
 	public int joinMember(MemberVO member) throws DataAccessException {
 		return memberDAO.joinMember(member);
 	}
-
-
+	
 	@Override
-	public int memberRemove(String id) throws DataAccessException {
-		return memberDAO.deleteMember(id);
+	public int deleteMember(String u_id)throws DataAccessException {
+		return memberDAO.deleteMember(u_id);
 	}
-
+	
 	@Override
-	public MemberVO login(MemberVO memberVO) throws Exception{
-		return memberDAO.loginById(memberVO);
+	public MemberVO login(MemberVO memberVO)throws Exception{
+		return memberDAO.login(memberVO);
+	}
+	
+	@Override
+	public MemberVO findId(MemberVO memberVO)throws DataAccessException {
+		return memberDAO.findId(memberVO);
+	}
+	
+	@Override
+	public int modi(MemberVO memberVO)throws DataAccessException {
+		return memberDAO.modi(memberVO);
 	}
 }

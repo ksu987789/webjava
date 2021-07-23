@@ -17,4 +17,6 @@ public interface BoardDAO {
 	public List krSoccerList() throws DataAccessException;
 	public List newsList() throws DataAccessException;
 	public List freeList() throws DataAccessException;
+	public void osWrite2(ArticleVO articleVO) throws DataAccessException;
+	public ArticleVO osView(int no) throws DataAccessException;
 }

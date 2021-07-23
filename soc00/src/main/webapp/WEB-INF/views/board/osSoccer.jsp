@@ -64,12 +64,14 @@
 			</tr>
 			<c:forEach var="osArticle" items="${allList }">
 			<tr align="center" >
-				<td>${osArticle.s1_category}</td>
-				<td>${osArticle.s1_no }</td>
-				<td>${osArticle.s1_title }</td>
-				<td>${osArticle.s1_regdate }</td>
+				<td>${osArticle.category}</td>
+				<td>${osArticle.no }</td>
+				<td><a href="${contextPath}/board/osView.do?no=${osArticle.no}">
+					${osArticle.title }</a>
+				</td>
+				<td>${osArticle.regdate }</td>
 				<td>${osArticle.u_id }</td>
-				<td>${osArticle.s1_view }</td>
+				<td>${osArticle.view }</td>
 				
 			</tr>
 			</c:forEach>

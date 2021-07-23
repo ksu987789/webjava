@@ -19,7 +19,17 @@ public class ArticleVO {
 	private String u_id;
 	
 	public ArticleVO() {
-		System.out.println("no");
+		
+	}
+	
+	public ArticleVO(int no, String title, String content, String category, Date regdate, int view, String u_id) {
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+		this.regdate = regdate;
+		this.view = view;
+		this.u_id = u_id;
 	}
 
 	public String getCategory() {

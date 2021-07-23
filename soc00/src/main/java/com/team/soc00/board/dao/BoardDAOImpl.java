@@ -25,6 +25,16 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	@Override
+	public void osWrite2(ArticleVO articleVO) throws DataAccessException {
+		sqlSession.insert("mapper.board.insertOsSoccer", articleVO);
+	}
+	
+	@Override
+	public ArticleVO osView(int no) throws DataAccessException {
+		return sqlSession.selectOne("mapper.board.selectOsView", no);
+	}
+	
+	@Override
 	public int osWrite(Map articleMap) throws DataAccessException{
 		int No = selectOsSoccerNO();
 		articleMap.put("no", No);

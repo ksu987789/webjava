@@ -1,23 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"
 	isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String ctx = request.getContextPath();	//콘텍스트명 얻어오기.
 %>
+<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SmartEditor</title>
-<script type="text/javascript" src="${contextPath}/resources/SE/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/WEB-INF/SE/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script type="text/javascript">
 var oEditors = [];
 $(function(){
       nhn.husky.EZCreator.createInIFrame({
           oAppRef: oEditors,
-          elPlaceHolder: "ir1",
-          sSkinURI: "resources/SE/SmartEditor2Skin.html",  
+          elPlaceHolder: "content",
+          sSkinURI: "/WEB-INF/SE/SmartEditor2Skin.html",  
           htParams : {
               bUseToolbar : true,             
               bUseVerticalResizer : true,     
@@ -27,7 +30,7 @@ $(function(){
               }
           }, 
           fOnAppLoad : function(){
-              oEditors.getById["ir1"].exec("PASTE_HTML", ["내용을 입력해주세요"]);
+              oEditors.getById["content"].exec("PASTE_HTML", ["내용을 입력해주세요"]);
           },
           fCreator: "createSEditor2"
       });
@@ -53,7 +56,7 @@ $(function(){
 <div class="container" align="right">
 <h3>글쓰기</h3>
 <hr/>
-<form id="frm" action="osWrite.do" method="post" >
+<form id="frm" action="${contextPath }/board/osWrite.do" method="post" >
 <table width="70%" align="center">
         <tr>
             <td>제목</td>
@@ -61,7 +64,7 @@ $(function(){
         </tr>
         <tr>
         	<td>아이디</td>
-        	<td><input class="col-md-2 form-control" type="text" placeholder="작성자1" readonly></td>
+        	<td><input class="col-md-2 form-control" type="text" name="u_id" value="${member.u_id }" readonly></td>
 
         	
         </tr>
@@ -81,7 +84,7 @@ $(function(){
         <tr>
             <td>내용</td>
             <td>
-                <textarea rows="10" cols="30" id="ir1" name="ir1" style="width:650px; height:350px; "></textarea>
+                <textarea rows="10" cols="30" id="ir1" name="content" style="width:650px; height:350px; "></textarea>
             </td>
         </tr>
         <tr>

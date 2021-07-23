@@ -16,7 +16,12 @@
 	
 	<definition name="board/osWriteForm" extends="baseLayout">
 		<put-attribute name="title" value="해외축구 글쓰기"/>
-		<put-attribute name="body" value="/WEB-INF/views/board/osWrite.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/osWriteForm.jsp"/>
+	</definition>
+	
+	<definition name="board/osView" extends="baseLayout">
+		<put-attribute name="title" value="해외축구"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/osView.jsp"/>
 	</definition>
 	
 	<definition name="board/krSoccer" extends="baseLayout">

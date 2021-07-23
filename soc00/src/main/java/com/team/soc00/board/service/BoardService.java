@@ -17,4 +17,7 @@ public interface BoardService {
 	
 	public List<ArticleVO> freeList() throws Exception;
 	
+	public void osWrite2(ArticleVO articleVO)throws Exception;
+	
+	public ArticleVO osView(int no)throws Exception;
 }

@@ -15,6 +15,7 @@
 			text-align:center;
 			
 		}
+		
 		#header {
 			padding:5px;
 			margin-bottom:5px;
@@ -24,10 +25,29 @@
 		#content {
 			width:100%;
 			padding:5px;
-			
+		}
 		
+		#sidebar{
 			
 		}
+		
+		#sidebar-right {
+			display:flex;
+			flex-direction:column;
+			flex-wrap:wrap;
+			flex-basis:15%;
+			
+			width:15%;
+			height:700px;
+			padding:5px;
+			margin-right:5px;
+			margin-bottom:5px;
+			float:right;
+			background-color:#eaf7fe;
+			border:0px solid #bcbcbc;
+			
+		}
+		
 		#footer {
 			clear:both;
 			padding:5px;
@@ -41,6 +61,9 @@
 	<div id="container">
 		<div id="header">
 			<tiles:insertAttribute name="header"/>
+		</div>
+		<div id="sidebar-right">
+			<tiles:insertAttribute name="side"/>
 		</div>
 		<div id="content">
 			<tiles:insertAttribute name="body"/>
